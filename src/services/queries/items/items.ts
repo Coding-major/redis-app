@@ -4,6 +4,15 @@ import { client } from '$services/redis';
 import { genId } from '$services/utils';
 import { DateTime } from 'luxon';
 
+export const getItem = async (id: string) => {
+    const item = await client.hGetAll(itemKey(id))
+
+    if (Object.keys(item).length === 0) {
+        return null
+    }
+
+    return deserialize(id, item)
+};
 
 export const getItems = async (ids: string[]) => {};
 
@@ -17,5 +26,24 @@ const serialize = (attr: CreateItemAttrs) => {
         ...attr,
         createdAt: attr.createdAt.toMillis(),
         endingAt: attr.endingAt.toMillis()
+    }
+}
+
+const deserialize = (id: string, item: {[key: string]: string}): Item => {
+    return {
+        id,
+        name: item.name,
+        ownerId: item.ownerId,
+        imageUrl: item.imageUrl,
+        description: item.description,
+        highestBidUserId: item.highestBidUserId,
+        createdAt: DateTime.fromMillis(parseInt(item.createdAt)),
+        endingAt: DateTime.fromMillis(parseInt(item.endingAt)),
+        views: parseInt(item.views),
+        likes: parseInt(item.likes),
+        price: parseInt(item.price),
+        bids: parseFloat(item.bids),
+        
+
     }
 }
