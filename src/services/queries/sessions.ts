@@ -32,7 +32,7 @@ const serialize = (session: Session) => {
     }
 }
 
-const deserialize = (id: string, session: {[key: string]: string}) => {
+const deserialize = (id: string, session: {[key: string]: string}): Session => {
     return {
         id,
         userId: session.userId,
