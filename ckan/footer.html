@@ -1,0 +1,42 @@
+<footer class="site-footer">
+    <div class="container-fluid top-container">
+      {% block footer_content %}
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="footer-content">
+            <div class="footer-links">
+              <div>
+                <h3 class="footer-title">eHA Data Portal</h3>
+                <ul class="list-unstyled">
+                  <!-- <li>
+                    <a href="{{ h.url_for(controller='home', action='about') }}">{{ _('About Portal')}}</a>
+                  </li> -->
+                  <li>
+                    <a href="/policy">{{ _('Privacy Policy')}}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="footer-partner">
+              <div class="inner-footer-partner">
+                <h3 class="footer-title">Part of eHealth Africa</h3>
+                <img src="/image/eha-logo-white.svg" class="global-logo" alt="eHA logo">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endblock %}
+    </div>
+    <div class="container-fluid">
+      <div class="footer-disclaimer">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <p>&copy; 2018 - {{ h.current_year() }} eHealth Africa</p>
+            <p>{{ _('All rights reserved except published datasets/resources and metadata.') }}</p>
+            <p>{{ _('All datasets/resources including metadata published on data.ehealthafrica.org are licensed under GRID') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>

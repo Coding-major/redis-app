@@ -1,0 +1,91 @@
+{% ckan_extends %}
+
+{%- block header %}
+  {% snippet "header.html", is_home=True %}
+{% endblock -%}
+
+{% block content %}
+<div class="home-wrapper container-fluid">
+  {% snippet 'home/snippets/home_impact.html', stat=stat %}
+
+  <div class="row">
+    <div class="module col-md-10 col-md-offset-1">
+      <div class="module-content flex">
+        <div class="teaser">
+          <h2 class="headline-xl">
+            Are you looking for the number of health facilities in Kaduna or number of farms located
+            in Kano state? The answers to these basic questions and even more complex questions can
+            be mined from our datasets.
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% snippet 'home/snippets/home_map_with_sectors.html', dataset_count=dataset_count, sector_count=sector_count %}
+  {% snippet 'home/snippets/home_recent_datasets.html' %}
+
+
+  <div class="row">
+    <div class="module col-md-10 col-md-offset-1">
+      <div class="support-teaser">
+        <div class="bg-image">
+          <img src="/image/support-bg.jpg" alt="support" />
+        </div>
+        <h2 class="headline-xxl text-center">Need help?</h2>
+        <h3 class="title-xl text-center">
+          Learn how to use the eHA data portal
+        </h3>
+        <a href="/support" class="btn btn-large btn-block btn-primary faq-btn">
+          Frequently asked questions
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="module col-md-10 col-md-offset-1">
+      <div class="module-content flex">
+        <div class="teaser">
+          <h2 class="headline-xxl">About the eHA data portal</h2>
+          <p>
+            Over the years, eHealth Africa has collected and cataloged a wide variety of geospatial
+            data and other data sets in the countries and regions we’ve worked in.
+          </p>
+          <p>
+            <b>We are making this data open to all for non-commercial use.</b>
+          </p>
+          <a href="/about" class="link">
+            read more
+          </a>
+        </div>
+        <div class="teaser">
+          <h2 class="headline-xxl">About eHealth Africa</h2>
+          <p>
+            eHealth Africa was founded in 2009 with a simple idea that communities in developing
+            countries could have better healthcare when providers are able to make <b>data-driven
+            decisions.</b>
+          </p>
+          <p>
+            We continue to support the building of stronger health systems through the design and
+            implementation of solutions that respond to local needs and provide underserved
+            communities with tools to lead healthier lives.
+          </p>
+          <a href="http://ehealthafrica.org" target="blank" class="link">
+            Visit eHealth Africa
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+  
+  {{ super() }}
+
+  {% asset 'eha/custom-js' %}
+{% endblock %}
