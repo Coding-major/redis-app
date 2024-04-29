@@ -1,5 +1,5 @@
 import type { CreateItemAttrs, Item } from '$services/types';
-import { itemKey} from '$services/keys';
+import { itemKey, itemsByViewsKey, itemsByEndingAtKey } from '$services/keys';
 import { client } from '$services/redis';
 import { genId } from '$services/utils';
 import { DateTime } from 'luxon';
@@ -32,7 +32,22 @@ export const getItems = async (ids: string[]) => {
 
 export const createItem = async (attrs: CreateItemAttrs, userId: string) => {
     const id = genId()
-    await client.hSet(itemKey(id), serialize(attrs))
+    await 
+
+
+    await Promise.all([
+        client.hSet(itemKey(id), serialize(attrs)),
+        client.zAdd(itemsByViewsKey(), {
+            value: id,
+            score:0
+        }),
+        client.zAdd(itemsByEndingAtKey(), {
+            value: id,
+            score: 0
+        })
+
+
+    ])
 };
 
 const serialize = (attr: CreateItemAttrs) => {

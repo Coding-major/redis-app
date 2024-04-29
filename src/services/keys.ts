@@ -8,3 +8,5 @@ export const userLikesKey = (likeId: string) => `user:like#${likeId}`
 
 //items
 export const itemKey = (itemId: string) => `item#${itemId}`
+export const itemsByViewsKey = () => `items:views`
+export const itemsByEndingAtKey = () => `items:endingAt`
