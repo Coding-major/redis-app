@@ -32,8 +32,6 @@ export const getItems = async (ids: string[]) => {
 
 export const createItem = async (attrs: CreateItemAttrs, userId: string) => {
     const id = genId()
-    await 
-
 
     await Promise.all([
         client.hSet(itemKey(id), serialize(attrs)),
@@ -43,7 +41,7 @@ export const createItem = async (attrs: CreateItemAttrs, userId: string) => {
         }),
         client.zAdd(itemsByEndingAtKey(), {
             value: id,
-            score: 0
+            score: attrs.endingAt.toMillis()
         })
 
 
